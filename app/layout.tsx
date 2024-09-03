@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import TopBar from '@/components/TopBar';
+import BottomNav from '@/components/BottomNav';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,12 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
-      </head>
-      <body className="">{children}</body>
+      <body className={inter.className}>
+        <div className="flex flex-col min-h-screen">
+          <TopBar />
+          <main className="flex-grow">{children}</main>
+          <BottomNav />
+        </div>
+      </body>
     </html>
   );
 }
