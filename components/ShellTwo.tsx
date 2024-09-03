@@ -1,6 +1,7 @@
 import { Settings } from 'lucide-react';
+import { ScrollArea } from './ui/scroll-area';
 
-const MobileShell = ({ children, header = true, footer = true, appName, className }: { children: React.ReactNode, header?: boolean, footer?: boolean, appName?: string, className?: string }) => {
+const MobileShell = ({ children, scrolling = true, header = true, footer = true, footerContent, appName, className }: { children: React.ReactNode, scrolling?: boolean, header?: boolean, footer?: boolean, footerContent?: React.ReactNode, appName?: string, className?: string }) => {
 
     return (
         <div className={`flex flex-col h-screen`}>
@@ -10,12 +11,18 @@ const MobileShell = ({ children, header = true, footer = true, appName, classNam
                     <Settings className="w-6 h-6 cursor-pointer" />
                 </header>
             }
-            <main className={`flex-grow overflow-hidden relative ${className}`}>
-                {children}
-            </main>
+            {scrolling ?
+                <ScrollArea className={`flex-grow overflow-auto relative ${className}`}>
+                    {children}
+                </ScrollArea>
+                :
+                <main className={`flex-grow overflow-hidden relative ${className}`}>
+                    {children}
+                </main>
+            }
             {footer &&
                 <footer className="flex items-center justify-center p-4 bg-white shadow-md">
-                    <p className="text-sm">Bottom App Bar</p>
+                    {footerContent || <p className="text-sm">Bottom App Bar</p>}
                 </footer>
             }
         </div>
