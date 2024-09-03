@@ -3,21 +3,22 @@ import React from 'react'
 import Link from 'next/link'
 
 // Mock data for the dashboard
-const upcomingDates = [
-  { id: 1, name: 'Alex', date: '2023-06-18', time: '19:00', location: 'Central Park' },
-  { id: 2, name: 'Jamie', date: '2023-06-20', time: '20:00', location: 'Italian Restaurant' },
+const messages = [
+  { id: 1, name: 'Alex', avatar: 'https://picsum.photos/id/1011/50/50', lastMessage: 'Hey! Looking forward to our date!' },
+  { id: 2, name: 'Jamie', avatar: 'https://picsum.photos/id/1012/50/50', lastMessage: 'Can’t wait for our dinner!' },
 ]
 
 const forYou = [
-  { id: 1, type: 'quest', title: 'Complete your profile' },
-  { id: 2, type: 'challenge', title: 'Start a conversation with 3 new matches' },
-  { id: 3, type: 'question', title: "What's your ideal first date?" },
+  { id: 1, type: 'quest', title: 'Complete your profile', reward: '10 points' },
+  { id: 2, type: 'challenge', title: 'Start a conversation with 3 new matches', reward: '20 points' },
+  { id: 3, type: 'question', title: "What's your ideal first date?", reward: '5 points' },
 ]
 
-const pastEvents = [
-  { id: 1, title: 'Speed Dating Night', date: '2023-06-10' },
-  { id: 2, title: 'Cooking Class Mixer', date: '2023-06-05' },
-]
+const stats = {
+  totalMatches: 15,
+  messagesSent: 30,
+  eventsAttended: 5,
+}
 
 export default function Home() {
   return (
@@ -26,15 +27,28 @@ export default function Home() {
         <h1 className="text-4xl font-light text-gray-800 mb-8">Welcome, Sarah</h1>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-light text-gray-800 mb-4">Upcoming Dates</h2>
+          <h2 className="text-2xl font-light text-gray-800 mb-4">Chat with Friends</h2>
           <div className="grid gap-4 md:grid-cols-2">
-            {upcomingDates.map(date => (
-              <div key={date.id} className="bg-white border border-gray-200 rounded-lg p-4 transition-shadow hover:shadow-md">
-                <p className="font-semibold text-pink-600">{date.name}</p>
-                <p className="text-sm text-gray-600">{date.date} at {date.time}</p>
-                <p className="text-sm text-gray-600">{date.location}</p>
+            {messages.map(message => (
+              <div key={message.id} className="bg-white border border-gray-200 rounded-lg p-4 flex items-center transition-shadow hover:shadow-md">
+                <img src={message.avatar} alt={message.name} className="rounded-full mr-4" />
+                <div>
+                  <p className="font-semibold text-gray-800">{message.name}</p>
+                  <p className="text-sm text-gray-600">{message.lastMessage}</p>
+                </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-light text-gray-800 mb-4">Meet Juniper</h2>
+          <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center transition-shadow hover:shadow-md">
+            <img src="https://picsum.photos/id/1005/50/50" alt="Juniper" className="rounded-full mr-4" />
+            <div>
+              <p className="font-semibold text-gray-800">Juniper</p>
+              <p className="text-sm text-gray-600">What're you looking for today? I'm here to help!</p>
+            </div>
           </div>
         </section>
 
@@ -44,21 +58,18 @@ export default function Home() {
             {forYou.map(item => (
               <div key={item.id} className="bg-white border border-gray-200 rounded-lg p-4 transition-shadow hover:shadow-md">
                 <p className="font-semibold text-gray-800">{item.title}</p>
-                <p className="text-sm text-pink-600">{item.type}</p>
+                <p className="text-sm text-pink-600">{item.type} - Reward: {item.reward}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-light text-gray-800 mb-4">Events You've Attended</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {pastEvents.map(event => (
-              <div key={event.id} className="bg-white border border-gray-200 rounded-lg p-4 transition-shadow hover:shadow-md">
-                <p className="font-semibold text-gray-800">{event.title}</p>
-                <p className="text-sm text-gray-600">{event.date}</p>
-              </div>
-            ))}
+          <h2 className="text-2xl font-light text-gray-800 mb-4">Your Stats</h2>
+          <div className="bg-white border border-gray-200 rounded-lg p-4">
+            <p className="font-semibold text-gray-800">Total Matches: {stats.totalMatches}</p>
+            <p className="text-gray-600">Messages Sent: {stats.messagesSent}</p>
+            <p className="text-gray-600">Events Attended: {stats.eventsAttended}</p>
           </div>
         </section>
 

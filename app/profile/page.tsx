@@ -1,41 +1,56 @@
 'use client'
+import React from 'react'
 import Image from 'next/image'
-import InterestTags from '@/components/InterestTags'
-import FavoriteMovies from '@/components/FavoriteMovies'
-import ProfileStats from '@/components/ProfileStats'
+
+const profileData = {
+  name: 'Sarah',
+  age: 28,
+  bio: 'Coffee enthusiast, hiking lover, and bookworm. Looking for someone to share adventures with!',
+  interests: ['Coffee', 'Hiking', 'Reading', 'Travel'],
+  photos: [
+    'https://picsum.photos/id/1005/400/600',
+    'https://picsum.photos/id/1011/400/600',
+    'https://picsum.photos/id/1012/400/600',
+  ]
+}
 
 export default function Profile() {
   return (
-    <div className="min-h-screen bg-pink-400 text-white p-6">
-      <div className="max-w-2xl mx-auto bg-white text-gray-800 rounded-lg shadow-lg p-8">
-        <Image
-          src="https://picsum.photos/seed/johndoe/200/200"
-          alt="John Doe"
-          width={200}
-          height={200}
-          className="rounded-full mx-auto border-4 border-pink-400"
-        />
-        <h2 className="text-3xl font-bold text-center mt-4">John Doe, 28</h2>
-        <p className="text-center text-gray-600">New York City</p>
-
-        <div className="mt-6">
-          <h3 className="text-xl font-bold text-pink-600">About Me</h3>
-          <p className="mt-2">
-            Coffee enthusiast, amateur photographer, and avid hiker. Looking for someone to share adventures and lazy Sundays with. Let's grab a coffee and see where it takes us!
-          </p>
+    <div className="min-h-screen bg-white p-4">
+      <div className="max-w-md mx-auto">
+        <header className="border-b border-gray-200 pb-4 mb-6">
+          <h1 className="text-2xl font-bold text-gray-800">Your Profile</h1>
+        </header>
+        
+        <div className="mb-8">
+          <Image
+            src={profileData.photos[0]}
+            alt={profileData.name}
+            width={400}
+            height={600}
+            className="rounded-lg w-full h-auto"
+          />
         </div>
-
-        <InterestTags />
-
-        <FavoriteMovies />
-
-        <ProfileStats />
-
-        <div className="mt-6 text-center">
-          <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-            Send a Message
-          </button>
+        
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">{profileData.name}, {profileData.age}</h2>
+          <p className="text-gray-600">{profileData.bio}</p>
         </div>
+        
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">Interests</h3>
+          <div className="flex flex-wrap gap-2">
+            {profileData.interests.map((interest, index) => (
+              <span key={index} className="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm">
+                {interest}
+              </span>
+            ))}
+          </div>
+        </div>
+        
+        <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+          Edit Profile
+        </button>
       </div>
     </div>
   )
