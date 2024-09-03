@@ -21,12 +21,6 @@ const eventsList = [
   { id: 5, title: 'Live Music Night', date: '2023-07-20', time: '20:00', location: 'Downtown Cafe', description: 'Enjoy live performances from local bands.' },
 ];
 
-const stats = {
-  totalMatches: 15,
-  messagesSent: 30,
-  eventsAttended: 5,
-}
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
