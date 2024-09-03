@@ -1,16 +1,42 @@
 'use client'
 
-export default function Chat() {
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { PenSquare } from 'lucide-react'
+import MatchList from '@/components/MatchList'
+import TabBar from '@/components/TabBar'
+
+export default function Inbox() {
+  const [activeTab, setActiveTab] = useState('chats')
+  const [activeSubTab, setActiveSubTab] = useState('all')
+
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-grow p-4 overflow-y-auto">
-        <div className="bg-gray-200 p-2 rounded-lg mb-2 max-w-[70%]">Hey, how are you?</div>
-        <div className="bg-blue-500 text-white p-2 rounded-lg mb-2 max-w-[70%] ml-auto">I'm good, thanks! How about you?</div>
-        <div className="bg-gray-200 p-2 rounded-lg mb-2 max-w-[70%]">Doing great! Want to meet up later?</div>
-      </div>
-      <div className="p-4 bg-white border-t">
-        <input type="text" placeholder="Type a message..." className="w-full p-2 rounded-full border" />
-      </div>
+      <TabBar
+        tabs={['Chats', 'Friends']}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
+
+      {activeTab === 'chats' && (
+        <>
+          <TabBar
+            tabs={['All', 'Favorites', 'Online']}
+            activeTab={activeSubTab}
+            onTabChange={setActiveSubTab}
+          />
+          <MatchList filter={activeSubTab} />
+        </>
+      )}
+
+      {activeTab === 'friends' && (
+        // Implement friends list component here
+        <div>Friends list</div>
+      )}
+
+      <button className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg">
+        <PenSquare size={24} />
+      </button>
     </div>
   )
 }
