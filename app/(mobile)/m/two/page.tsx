@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronLeft } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel'; // Adjust the import path as necessary
+import MobileShell from '@/components/ShellTwo';
 
 const BackButton = () => (
     <button className="absolute top-4 left-4 text-white">
@@ -71,7 +72,7 @@ const DatingProfile = () => {
     ];
 
     return (
-        <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <MobileShell scrolling>
             <div className="relative">
                 <BackButton />
                 <ImageHeader name="Hailey" age={21} />
@@ -88,7 +89,7 @@ const DatingProfile = () => {
                 ]}
             />
             <Interests interests={interests} />
-        </div>
+        </MobileShell>
     );
 };
 
