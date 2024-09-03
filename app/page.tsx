@@ -13,6 +13,13 @@ const forYou = [
   { id: 2, type: 'challenge', title: 'Start a conversation with 3 new matches', reward: '20 points' },
   { id: 3, type: 'question', title: "What's your ideal first date?", reward: '5 points' },
 ]
+const eventsList = [
+  { id: 1, title: 'Cooking Class', date: '2023-07-01', time: '10:00', location: 'Culinary School', description: 'Learn to cook delicious meals with a professional chef.' },
+  { id: 2, title: 'Yoga Retreat', date: '2023-07-05', time: '09:00', location: 'Mountain Resort', description: 'Join us for a relaxing weekend of yoga and meditation.' },
+  { id: 3, title: 'Art Exhibition', date: '2023-07-10', time: '18:00', location: 'City Gallery', description: 'Explore the latest works from local artists.' },
+  { id: 4, title: 'Book Club Meeting', date: '2023-07-15', time: '17:00', location: 'Local Library', description: 'Discuss this month’s book with fellow readers.' },
+  { id: 5, title: 'Live Music Night', date: '2023-07-20', time: '20:00', location: 'Downtown Cafe', description: 'Enjoy live performances from local bands.' },
+];
 
 const stats = {
   totalMatches: 15,
@@ -65,13 +72,22 @@ export default function Home() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-light text-gray-800 mb-4">Your Stats</h2>
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
-            <p className="font-semibold text-gray-800">Total Matches: {stats.totalMatches}</p>
-            <p className="text-gray-600">Messages Sent: {stats.messagesSent}</p>
-            <p className="text-gray-600">Events Attended: {stats.eventsAttended}</p>
+          <h2 className="text-2xl font-light text-gray-800 mb-4">Explore Events and Interests</h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {eventsList.map(event => (
+              <div key={event.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md transition-shadow hover:shadow-lg">
+                <img src={`https://picsum.photos/400/200?random=${event.id}`} alt={event.title} className="w-full h-48 object-cover" />
+                <div className="p-4">
+                  <h3 className="font-semibold text-gray-800 text-lg">{event.title}</h3>
+                  <p className="text-sm text-gray-600">Date: {event.date} at {event.time}</p>
+                  <p className="text-sm text-gray-600">Location: {event.location}</p>
+                  <p className="text-sm text-gray-600 mt-2">{event.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
+
 
         <Link href="/chat" className="block w-full">
           <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
