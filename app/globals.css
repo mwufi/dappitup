@@ -10,6 +10,10 @@
   font-style: normal;
 }
 
+body {
+  font-size: 0.875rem; /* Set base text to be a bit smaller */
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

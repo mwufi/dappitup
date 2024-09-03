@@ -42,7 +42,7 @@ const messages: Message[] = [
 export default function Inbox() {
     return (
         <div className="min-h-screen bg-white p-4 flex flex-col">
-            <div className="max-w-md mx-auto flex-grow">
+            <div className="max-w-md mx-auto h-full flex-grow">
                 <header className="border-b border-gray-200 pb-4 mb-4">
                     <h1 className="text-2xl font-bold text-gray-800">Your Inbox</h1>
                 </header>
@@ -60,11 +60,11 @@ export default function Inbox() {
                                             className="rounded-full mr-3"
                                         />
                                         <div className="flex-grow">
-                                            <h2 className="font-semibold text-gray-800">{message.sender}</h2>
-                                            <p className="text-sm text-gray-600 truncate">{message.content}</p>
+                                            <h2 className={`font-semibold text-gray-800 ${message.unread ? 'font-bold' : ''}`}>{message.sender}</h2>
+                                            <p className={`text-sm text-gray-600 truncate ${message.unread ? 'font-bold' : ''}`}>{message.content}</p>
                                         </div>
                                     </div>
-                                    <div className="text-xs text-gray-500 ml-4">{message.timestamp}</div>
+                                    <div className="text-xs text-gray-500 ml-4 w-24 text-right">{message.timestamp}</div>
                                 </div>
                                 {message.unread && (
                                     <div className="mt-2 text-xs font-semibold text-pink-600">New message</div>

@@ -1,24 +1,29 @@
-import React from 'react'
-import BottomMenu from '@/components/BottomMenu'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import BottomMenu from "@/components/BottomMenu";
 
-export const metadata = {
-  title: 'Dating App',
-  description: 'A modern dating app with events and notifications',
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Chat App",
+  description: "A simple chat application",
 };
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body>
-        <main className="pb-16">
-          {children}
-        </main>
-        <BottomMenu />
+    <html lang="en" className="h-full">
+      <body className={`${inter.className} h-full`}>
+        <div className="flex flex-col h-full">
+          <main className="flex-grow overflow-y-auto">
+            {children}
+          </main>
+          <BottomMenu />
+        </div>
       </body>
     </html>
   );
